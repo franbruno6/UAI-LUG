@@ -1,7 +1,8 @@
-import userModel from '../../models/blogs'
+import { Request, Response } from 'express'
+import userModel from '../../models/user'
 
 const userController = {
-    get: async (req, res) =>{
+    get: async (req: Request, res: Response) =>{
         try
         {
             const allBlogs = await userModel.find()
@@ -12,13 +13,13 @@ const userController = {
             res.status(500).send(error)
         }
     },
-    add: async (req, res) =>{
+    add: async (req: Request, res: Response) =>{
         try {
             const myUser = new userModel({...req.body})
             await myUser.save()
             res.send(myUser)
         } catch (error) {
-            req.status(500).send(error)
+            res.status(500).send(error)
         }
     },
 }
