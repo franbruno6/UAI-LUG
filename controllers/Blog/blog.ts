@@ -26,7 +26,7 @@ export const blogController = {  //ya lo exporto desde el principio
     try {
       const myBlog = await blogModel.find({_id: req.params.id}) //req.params.id es lo que ponemos en postman
       if (myBlog.length){ //para saber que no esta vacio
-        myBlog[0].comments.push({...req.body})
+        myBlog[0].comments.push({...req.body}) //las {...} es para copiar todas las propiedades
       }
       res.send(myBlog)
     } catch (error) {
